@@ -14,6 +14,8 @@ class SecondViewController: UIViewController {
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var stepper: UIStepper!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var progressView: UIProgressView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,8 @@ class SecondViewController: UIViewController {
         activityIndicator.color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         activityIndicator.startAnimating()
         
+        progressView.setProgress(0, animated: true)
+        
         
         // отслеживает появление клавиатуры
         NotificationCenter.default.addObserver(self,
@@ -55,11 +59,19 @@ class SecondViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         
-        UIView.animate(withDuration: 0, delay: 3, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0, delay: 5, options: .curveEaseIn) {
             self.textView.alpha = 1
         } completion: { (finished) in
             self.activityIndicator.stopAnimating()
             self.textView.isHidden = false
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _IOFBF in
+            if self.progressView.progress != 1 {
+                self.progressView.progress += 0.2
+            } else {
+                self.progressView.isHidden = true
+            }
         }
 
     }
