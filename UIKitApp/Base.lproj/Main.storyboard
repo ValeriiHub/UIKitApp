@@ -133,18 +133,31 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWF-O7-nFv">
-                                <rect key="frame" x="20" y="40" width="374" height="21"/>
+                                <rect key="frame" x="20" y="40" width="220" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kZ7-wQ-Ef2">
+                                <rect key="frame" x="300" y="34" width="94" height="32"/>
+                                <connections>
+                                    <action selector="sizeFont:" destination="BPM-2N-QTs" eventType="valueChanged" id="cnp-br-DBa"/>
+                                </connections>
+                            </stepper>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-Sf-TYK">
+                                <rect key="frame" x="197" y="304" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lVL-qH-eIJ"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
-                            <constraint firstItem="lVL-qH-eIJ" firstAttribute="trailing" secondItem="MWF-O7-nFv" secondAttribute="trailing" constant="20" id="3Zz-EN-M4X"/>
+                            <constraint firstItem="kZ7-wQ-Ef2" firstAttribute="leading" secondItem="MWF-O7-nFv" secondAttribute="trailing" constant="60" id="FIb-po-Sng"/>
                             <constraint firstItem="dzy-pR-eyt" firstAttribute="leading" secondItem="lVL-qH-eIJ" secondAttribute="leading" constant="20" id="Ow7-eh-B2h"/>
+                            <constraint firstItem="d6e-Sf-TYK" firstAttribute="centerY" secondItem="dzy-pR-eyt" secondAttribute="centerY" id="T7J-7y-Dmq"/>
                             <constraint firstItem="dzy-pR-eyt" firstAttribute="top" secondItem="MWF-O7-nFv" secondAttribute="bottom" constant="40" id="TeT-Rg-b1g"/>
+                            <constraint firstItem="d6e-Sf-TYK" firstAttribute="centerX" secondItem="dzy-pR-eyt" secondAttribute="centerX" id="U07-3m-jj0"/>
+                            <constraint firstItem="kZ7-wQ-Ef2" firstAttribute="top" secondItem="lVL-qH-eIJ" secondAttribute="top" constant="34" id="WSM-K4-sug"/>
+                            <constraint firstItem="lVL-qH-eIJ" firstAttribute="trailing" secondItem="kZ7-wQ-Ef2" secondAttribute="trailing" constant="20" id="YOV-2q-PRq"/>
                             <constraint firstItem="MWF-O7-nFv" firstAttribute="top" secondItem="lVL-qH-eIJ" secondAttribute="top" constant="40" id="hrp-Fw-drF"/>
                             <constraint firstItem="lVL-qH-eIJ" firstAttribute="bottom" secondItem="dzy-pR-eyt" secondAttribute="bottom" constant="160" id="oKX-Mb-CSf"/>
                             <constraint firstItem="MWF-O7-nFv" firstAttribute="leading" secondItem="lVL-qH-eIJ" secondAttribute="leading" constant="20" id="sra-q1-pI0"/>
@@ -153,8 +166,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="aWt-Xj-MBN"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="d6e-Sf-TYK" id="Vqe-bc-KIx"/>
                         <outlet property="bottomConstraint" destination="oKX-Mb-CSf" id="hvh-mM-AS4"/>
                         <outlet property="countLabel" destination="MWF-O7-nFv" id="fg2-uD-SrK"/>
+                        <outlet property="stepper" destination="kZ7-wQ-Ef2" id="3Ql-0Z-8Vp"/>
                         <outlet property="textView" destination="dzy-pR-eyt" id="zB4-dv-lnC"/>
                     </connections>
                 </viewController>

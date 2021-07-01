@@ -12,18 +12,36 @@ class SecondViewController: UIViewController {
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var textView: UITextView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var stepper: UIStepper!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.text = ""
+        //textView.text = ""
         
         textView.delegate = self
+        
+        textView.isHidden = true
+        textView.alpha = 0
         
         textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
         textView.backgroundColor = view.backgroundColor
         
         textView.layer.cornerRadius = 10
+        
+        stepper.value = 17
+        stepper.minimumValue = 10
+        stepper.maximumValue = 25
+        
+        stepper.tintColor = .red
+        stepper.backgroundColor = .yellow
+        stepper.layer.cornerRadius = 5
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        activityIndicator.startAnimating()
+        
         
         // отслеживает появление клавиатуры
         NotificationCenter.default.addObserver(self,
@@ -36,6 +54,14 @@ class SecondViewController: UIViewController {
                                                selector: #selector(updatwTextView(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+        
+        UIView.animate(withDuration: 0, delay: 3, options: .curveEaseIn) {
+            self.textView.alpha = 1
+        } completion: { (finished) in
+            self.activityIndicator.stopAnimating()
+            self.textView.isHidden = false
+        }
+
     }
     
     // скрытия клавиатуры потопу за пределами textView
@@ -63,6 +89,15 @@ class SecondViewController: UIViewController {
         }
         textView.scrollRangeToVisible(textView.selectedRange)
     }
+    
+    
+    @IBAction func sizeFont(_ sender: UIStepper) {
+        let font = textView.font?.fontName
+        let fontSize = CGFloat(sender.value)
+        
+        textView.font = UIFont(name: font!, size: fontSize)
+    }
+    
 
 }
 
